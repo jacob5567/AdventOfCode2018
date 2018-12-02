@@ -5,7 +5,12 @@ def main():
     input_list = input_file.readlines()
     input_file.close()
     frequency = 0
+    frequency_dict = {}
     for element in input_list:
+        if frequency in frequency_dict:
+            break
+        else:
+            frequency_dict[frequency] = True
         if element[0] == '+':
             frequency += int(element[1:])
         else:
