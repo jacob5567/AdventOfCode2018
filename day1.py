@@ -1,10 +1,9 @@
 # Jacob Faulk
 
-
 def main():
-    input_string = input("Enter frequency changes: ")
+    input_file = open("input/day1input.txt", "r")
+    input_list = input_file.readlines()
     frequency = 0
-    input_list = input_string.split(", ")
     for element in input_list:
         if element[0] == '+':
             frequency += int(element[1:])
