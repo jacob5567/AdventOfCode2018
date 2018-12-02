@@ -5,7 +5,7 @@ WILDCARD_CHAR = '*'
 
 def main():
     with open("input/day2input.txt", 'r') as f:
-        input_list = f.readlines()
+        input_list = [line[:-1] for line in f]
     print(get_checksum(input_list))
     word1, word2 = get_matching_ids(input_list)
     print(get_common_letters(word1, word2))
@@ -31,18 +31,19 @@ def get_checksum(input_list):
 
 
 def get_matching_ids(input_list):
-    for i in range(len(input_list)):
+    for word1 in range(len(input_list)):
         substitutions = []
-        for k in range(len(input_list[i])):
+        for char in range(len(input_list[word1])):
             substitutions.append(
-                input_list[k][:k] + WILDCARD_CHAR + input_list[k][k+1:])
-        for j in range(i+1, len(input_list)):
-            match = True
-            for l in range(len(input_list[j])):
-                if not (input_list[j][l] == input_list[i][l] or input_list[j][l] == WILDCARD_CHAR):
-                    match = False
-            if match:
-                return input_list[i], input_list[j]
+                input_list[word1][:char] + WILDCARD_CHAR + input_list[word1][char+1:])
+        for word2 in range(word1+1, len(input_list)):
+            for current_sub in substitutions:
+                match = True
+                for char in range(len(input_list[word2])):
+                    if not (input_list[word2][char] == current_sub[char] or current_sub[char] == WILDCARD_CHAR):
+                        match = False
+                if match:
+                    return input_list[word1], input_list[word2]
     print("No match found!")
     exit('1')
 
