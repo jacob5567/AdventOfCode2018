@@ -1,10 +1,12 @@
 # Jacob Faulk
 
+
 def main():
     input_file = open("input/day1input.txt", "r")
     input_list = input_file.readlines()
     input_file.close()
     print(find_duplicate_frequency(input_list))
+
 
 def find_duplicate_frequency(input_list):
     frequency = 0
