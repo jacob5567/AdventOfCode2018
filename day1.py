@@ -4,18 +4,21 @@ def main():
     input_file = open("input/day1input.txt", "r")
     input_list = input_file.readlines()
     input_file.close()
+    print(find_duplicate_frequency(input_list))
+
+def find_duplicate_frequency(input_list):
     frequency = 0
-    frequency_dict = {}
-    for element in input_list:
-        if frequency in frequency_dict:
-            break
-        else:
-            frequency_dict[frequency] = True
-        if element[0] == '+':
-            frequency += int(element[1:])
-        else:
-            frequency -= int(element[1:])
-    print(frequency)
+    frequency_set = set()
+    while True:
+        for element in input_list:
+            if element[0] == '+':
+                frequency += int(element[1:])
+            else:
+                frequency -= int(element[1:])
+            if frequency in frequency_set:
+                return frequency
+            else:
+                frequency_set.add(frequency)
 
 
 if __name__ == "__main__":
