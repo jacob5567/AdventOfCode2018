@@ -4,7 +4,7 @@ WILDCARD_CHAR = '*'
 
 
 def main():
-    with open("input/day2input.txt", 'r') as f:
+    with open("day2input.txt", 'r') as f:
         input_list = [line[:-1] for line in f]
     print(get_checksum(input_list))
     word1, word2 = get_matching_ids(input_list)
